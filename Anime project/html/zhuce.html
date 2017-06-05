@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/zhucecss.css">
+    <script type="text/javascript" src="../js/Tools.js"></script>
+    <style type="text/css"></style>
+</head>
+<body>
+    <div class="entirety">
+        <nav>
+            <div class="logo"></div>
+            <div class="navigation">
+                <ul>
+                    <li>Home</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                    <li>关于我们</li>
+                </ul>
+            </div>
+        </nav>
+        <article>
+            <div class="article-1">
+                <div class="zc-1">
+                    <ul>
+                        <li>用户名</li>
+                        <li><input type="text" class="username"></li>
+                        <li><div class="yhm"></div></li>
+                    </ul>
+                </div>
+                <div class="zc-1">
+                    <ul>
+                        <li>密码</li>
+                        <li><input type="text" placeholder="密码必须包含大小写、数字、特殊符号" class="pwd"></li>
+                        <li><div class="mm"></div></li>
+                    </ul>
+                </div>
+                <div class="zc-1">
+                    <ul>
+                        <li>确认密码</li>
+                        <li><input type="text"  class="pwd2"></li>
+                        <li><div class="mm2"></div></li>
+                    </ul>
+                </div>
+                <div class="zc-1">
+                    <ul>
+                        <li>邮箱</li>
+                        <li><input type="text" placeholder="邮箱用于找回密码" class="email"></li>
+                        <li><div class="yx"></div></li>
+                    </ul>
+                </div>
+                <div class="zc-2">
+                    <ul>
+                        <li>头像</li>
+                        <li>
+                            <div class="tp">
+                                <img src="../img/default.jpg"  id="preview">
+                            </div>
+                        </li>
+                        <li>
+                            <input type="file" id="pic">
+                            <label for="pic">太丑了，换一张</label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="zc-3">
+                    <div>立即注册</div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var username=document.querySelector(".username");
+                var yhm=document.querySelector(".yhm");
+                var pwd=document.querySelector(".pwd");
+                var pwd2=document.querySelector(".pwd2");
+                var mm=document.querySelector(".mm");
+                var mm2=document.querySelector(".mm2");
+                var email=document.querySelector(".email");
+                var yx=document.querySelector(".yx");
+                username.addEventListener("blur",function(){
+                    if (this.value.length==0){
+                        yhm.innerHTML="×用户名不能得空";
+                        yhm.style.background="red"
+                    }else {
+                        yhm.innerHTML="√用户名可以使用";
+                        yhm.style.background="#58FF6E"
+                    }
+                });
+                pwd.addEventListener("keyup",function(){
+                    if (this.value){
+                        switch (valide_pwd(this.value)){
+                            case 3:
+                                mm.innerHTML="×密码强度低";
+                                mm.style.background="red";
+                                break;
+                            case 2:
+                                mm.innerHTML="×密码强度中";
+                                mm.style.background="red";
+                                break;
+                            case 1:
+                                mm.innerHTML="×密码强度较高";
+                                mm.style.background="red";
+                                break;
+                            case 0:
+                                mm.innerHTML="√密码强度高";
+                                mm.style.background="#58FF6E"
+                        }
+                    }else {
+                        mm.innerHTML="×密码不能为空";
+                        mm.style.background="red"
+                    }
+                });
+                pwd2.addEventListener("keyup",function(){
+                    if(this.value==pwd.value){
+                        mm2.innerHTML="√密码一致";
+                        mm2.style.background="#58FF6E"
+                    }else {
+                        mm2.innerHTML="×两次密码不一致";
+                        mm2.style.background="red"
+                    }
+                });
+                email.addEventListener("keyup",function(){
+                    if (valide_email(email.value)){
+                        yx.innerHTML="√邮箱格式合法";
+                        yx.style.background="#58FF6E"
+                    }else {
+                        yx.innerHTML="×邮箱格式不合法";
+                        yx.style.background="red"
+                    }
+                });
+                var pic=document.querySelector("#pic");
+                var preview=document.querySelector("#preview");
+                var fr=new FileReader();
+                pic.addEventListener("change",function(){
+                    fr.readAsDataURL(this.files[0]);
+                    fr.addEventListener("loadend",function(){
+                        preview.src=this.result;
+                    });
+                })
+            </script>
+        </article>
+        <footer>
+            关于我们 | 备案号:沪ICP备15050883号<br>
+            Copyright &copy; 1998-2016 Webonly.All Rights Reserved<br>
+            WEBONLY.ORG 版权所有<br>
+        </footer>
+    </div>
+</body>
+</html>
